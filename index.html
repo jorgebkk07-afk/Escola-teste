@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E.E PEI Jardim Santa Cecília</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --vermelho: #D32F2F;
+            --laranja: #F57C00;
+            --amarelo: #FFC107;
+            --branco: #FFFFFF;
+            --cinza-escuro: #424242;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--cinza-escuro);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--laranja);
+            color: var(--branco);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--vermelho);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-jornal {
+            background-color: var(--vermelho);
+        }
+
+        .btn-jornal:hover {
+            background-color: var(--laranja);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background-color: var(--branco);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            color: var(--cinza-escuro);
+        }
+
+        .logo span {
+            color: var(--vermelho);
+        }
+
+        .logo .phoenix-icon {
+            margin-right: 10px;
+            color: var(--laranja);
+            font-size: 1.8rem;
+            animation: flame 2s infinite alternate;
+        }
+
+        @keyframes flame {
+            0% { color: var(--laranja); }
+            100% { color: var(--amarelo); }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--cinza-escuro);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--vermelho);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--vermelho);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--cinza-escuro);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+            background-size: cover;
+            background-position: center;
+            color: var(--branco);
+            text-align: center;
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero .btn {
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sobre {
+            background-color: var(--branco);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--vermelho), var(--laranja), var(--amarelo));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .sobre-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .sobre-text {
+            flex: 1;
+        }
+
+        .sobre-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .sobre-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .estrutura {
+            background-color: #f5f5f5;
+        }
+
+        .estrutura-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .estrutura-item {
+            background-color: var(--branco);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .estrutura-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .estrutura-item i {
+            font-size: 2.5rem;
+            color: var(--laranja);
+            margin-bottom: 20px;
+        }
+
+        .sistemas {
+            background-color: var(--branco);
+        }
+
+        .sistemas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .sistema-card {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--vermelho);
+        }
+
+        .sistema-card h3 {
+            color: var(--vermelho);
+        }
+
+        .jornal {
+            background-color: #f5f5f5;
+        }
+
+        .jornal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .jornal-card {
+            background-color: var(--branco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .jornal-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .jornal-image {
+            height: 200px;
+            background-color: var(--laranja);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            font-size: 1.2rem;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .jornal-content {
+            padding: 20px;
+        }
+
+        .jornal-date {
+            color: var(--laranja);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .jornal-card h3 {
+            margin-bottom: 10px;
+            color: var(--cinza-escuro);
+        }
+
+        .jornal-card p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .jornal-link {
+            display: inline-block;
+            color: var(--vermelho);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .jornal-link:hover {
+            color: var(--laranja);
+        }
+
+        .jornal-btn-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .horarios {
+            background-color: var(--branco);
+        }
+
+        .horario-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--branco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .horario-table th, .horario-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .horario-table th {
+            background-color: var(--cinza-escuro);
+            color: var(--branco);
+        }
+
+        .horario-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .contato {
+            background-color: #f5f5f5;
+        }
+
+        .contato-container {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contato-info {
+            flex: 1;
+        }
+
+        .contato-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contato-item i {
+            font-size: 1.5rem;
+            color: var(--laranja);
+            margin-right: 15px;
+        }
+
+        .contato-whatsapp {
+            flex: 1;
+            text-align: center;
+            background-color: var(--branco);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .contato-whatsapp h3 {
+            color: var(--cinza-escuro);
+            margin-bottom: 15px;
+        }
+
+        .contato-whatsapp p {
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+        .whatsapp-icon {
+            font-size: 3rem;
+            color: #25D366;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: var(--cinza-escuro);
+            color: var(--branco);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo h2 {
+            color: var(--branco);
+            margin-bottom: 10px;
+        }
+
+        .footer-links h3,
+        .footer-social h3 {
+            color: var(--branco);
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--branco);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--branco);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--laranja);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .admin-panel {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 10000;
+        }
+
+        .admin-btn {
+            background: var(--vermelho);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10001;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            border-bottom-color: var(--vermelho);
+            color: var(--vermelho);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .image-preview {
+            max-width: 200px;
+            max-height: 150px;
+            margin: 10px 0;
+            display: none;
+            border-radius: 5px;
+        }
+
+        .base64-help {
+            background: #f0f8ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .base64-help a {
+            color: var(--vermelho);
+            text-decoration: none;
+        }
+
+        .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10002;
+        }
+
+        .password-content {
+            background: white;
+            margin: 20% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .password-error {
+            color: var(--vermelho);
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Estilos para o botão de upload de imagem */
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-input-btn {
+            display: block;
+            padding: 10px 15px;
+            background: var(--laranja);
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .file-input-btn:hover {
+            background: var(--vermelho);
+        }
+
+        /* Menu Mobile Corrigido */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            nav {
+                width: 100%;
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+                width: 100%;
+            }
+            
+            nav ul li {
+                margin: 0;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 12px 0;
+                border-bottom: 1px solid #eee;
+                width: 100%;
+            }
+            
+            nav ul li:last-child a {
+                border-bottom: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                z-index: 1001;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .sobre-content {
+                flex-direction: column;
+            }
+            
+            .contato-container {
+                flex-direction: column;
+            }
+            
+            .admin-panel {
+                top: 70px;
+                right: 15px;
+                z-index: 10000;
+            }
+            
+            .admin-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+                border-left: 3px solid transparent;
+            }
+            
+            .tab-btn.active {
+                border-left-color: var(--vermelho);
+                border-bottom-color: #ddd;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="admin-panel">
+        <button class="admin-btn" onclick="openPasswordModal()">
+            <i class="fas fa-cog"></i> Admin
+        </button>
+    </div>
+
+    <!-- Modal de Senha -->
+    <div id="passwordModal" class="password-modal">
+        <div class="password-content">
+            <h2 style="color: var(--vermelho); margin-bottom: 20px;">
+                <i class="fas fa-lock"></i> Acesso Restrito
+            </h2>
+            <p style="margin-bottom: 20px;">Digite a senha para acessar o painel administrativo:</p>
+            <div class="form-group">
+                <input type="password" id="adminPassword" placeholder="Digite a senha" style="text-align: center; font-size: 16px;">
+            </div>
+            <div id="passwordError" class="password-error">
+                <i class="fas fa-exclamation-triangle"></i> Senha incorreta!
+            </div>
+            <div class="admin-actions">
+                <button class="btn" onclick="checkPassword()" style="background: var(--laranja);">
+                    <i class="fas fa-unlock"></i> Acessar
+                </button>
+                <button class="btn" onclick="closePasswordModal()" style="background: #666;">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Admin -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <h2>Painel Administrativo - Site Principal</h2>
+            
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="openTab('hero-tab')">Hero/Banner</button>
+                <button class="tab-btn" onclick="openTab('sobre-tab')">Sobre</button>
+                <button class="tab-btn" onclick="openTab('estrutura-tab')">Estrutura</button>
+                <button class="tab-btn" onclick="openTab('sistemas-tab')">Sistemas</button>
+            </div>
+
+            <div id="hero-tab" class="tab-content active">
+                <div class="form-group">
+                    <label>Título Principal:</label>
+                    <input type="text" id="heroTitle">
+                </div>
+                <div class="form-group">
+                    <label>Subtítulo:</label>
+                    <textarea id="heroSubtitle"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Imagem de Fundo (Banner - Base64):</label>
+                    <textarea id="heroImage" placeholder="Cole o código Base64 da imagem do banner aqui" rows="4"></textarea>
+                    
+                    <!-- Botão de upload de imagem para Base64 -->
+                    <div class="file-input-wrapper">
+                        <div class="file-input-btn">
+                            <i class="fas fa-upload"></i> Selecionar Imagem para Converter em Base64
+                        </div>
+                        <input type="file" id="heroFileInput" accept="image/*">
+                    </div>
+                    
+                    <div class="base64-help">
+                        <strong>Como obter Base64:</strong><br>
+                        1. Use o botão acima para selecionar uma imagem<br>
+                        2. OU vá em <a href="https://www.base64-image.de" target="_blank">base64-image.de</a><br>
+                        3. Faça upload da imagem (1920x1080 pixels ideal)<br>
+                        4. Copie o código Base64<br>
+                        5. Cole aqui
+                    </div>
+                    <img id="heroImagePreview" class="image-preview">
+                </div>
+            </div>
+
+            <div id="sobre-tab" class="tab-content">
+                <div class="form-group">
+                    <label>Título da Seção:</label>
+                    <input type="text" id="sobreTitle">
+                </div>
+                <div class="form-group">
+                    <label>Texto Sobre:</label>
+                    <textarea id="sobreText" rows="6"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Imagem da Escola (Base64):</label>
+                    <textarea id="sobreImage" placeholder="Cole o código Base64 da imagem aqui" rows="4"></textarea>
+                    
+                    <!-- Botão de upload de imagem para Base64 -->
+                    <div class="file-input-wrapper">
+                        <div class="file-input-btn">
+                            <i class="fas fa-upload"></i> Selecionar Imagem para Converter em Base64
+                        </div>
+                        <input type="file" id="sobreFileInput" accept="image/*">
+                    </div>
+                    
+                    <div class="base64-help">
+                        <strong>Como obter Base64:</strong><br>
+                        1. Use o botão acima para selecionar uma imagem<br>
+                        2. OU vá em <a href="https://www.base64-image.de" target="_blank">base64-image.de</a><br>
+                        3. Faça upload da imagem (800x600 pixels ideal)<br>
+                        4. Copie o código Base64<br>
+                        5. Cole aqui
+                    </div>
+                    <img id="sobreImagePreview" class="image-preview">
+                </div>
+            </div>
+
+            <div id="estrutura-tab" class="tab-content">
+                <div class="form-group">
+                    <label>Título da Seção:</label>
+                    <input type="text" id="estruturaTitle">
+                </div>
+                
+                <div id="estrutura-cards"></div>
+                
+                <button class="btn" onclick="addEstruturaCard()" style="margin-top: 10px;">
+                    <i class="fas fa-plus"></i> Adicionar Card
+                </button>
+            </div>
+
+            <div id="sistemas-tab" class="tab-content">
+                <div class="form-group">
+                    <label>Título da Seção:</label>
+                    <input type="text" id="sistemasTitle">
+                </div>
+                
+                <div id="sistemas-cards"></div>
+                
+                <button class="btn" onclick="addSistemaCard()" style="margin-top: 10px;">
+                    <i class="fas fa-plus"></i> Adicionar Sistema
+                </button>
+            </div>
+
+            <div class="admin-actions">
+                <button class="btn" onclick="saveChanges()">Salvar Alterações</button>
+                <button class="btn" onclick="closeAdmin()" style="background: #666;">Cancelar</button>
+                <button class="btn" onclick="resetToDefault()" style="background: #ff9800;">Restaurar Padrão</button>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-fire phoenix-icon"></i>
+                <h1>E.E <span>PEI</span> Jardim Santa Cecília</h1>
+            </div>
+            <button class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" onclick="closeMenu()">Início</a></li>
+                    <li><a href="#sobre" onclick="closeMenu()">Sobre</a></li>
+                    <li><a href="#estrutura" onclick="closeMenu()">Estrutura</a></li>
+                    <li><a href="#sistemas" onclick="closeMenu()">Sistemas</a></li>
+                    <li><a href="jornal.html" onclick="closeMenu()">Jornal</a></li>
+                    <li><a href="blogs.html" onclick="closeMenu()">Blogs dos Clubes</a></li>
+                    <li><a href="#horarios" onclick="closeMenu()">Horários</a></li>
+                    <li><a href="#contato" onclick="closeMenu()">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 id="dynamic-hero-title">Bem-vindo à E.E PEI Jardim Santa Cecília</h1>
+            <p id="dynamic-hero-subtitle">Criando alunos competentes e protagonistas de suas próprias vidas</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/551122791810?text=Olá! Gostaria de mais informações sobre matrículas na Escola E.E PEI Jardim Santa Cecília" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Matricule seu filho
+                </a>
+                <a href="jornal.html" class="btn btn-jornal">Ver Jornal Escolar</a>
+                <a href="blogs.html" class="btn" style="background: var(--amarelo); color: var(--cinza-escuro);">Blogs dos Clubes</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="sobre" id="sobre">
+        <div class="container">
+            <h2 class="section-title" id="dynamic-sobre-title">Sobre Nossa Escola</h2>
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <p id="dynamic-sobre-text">A E.E PEI Jardim Santa Cecília tem como objetivo criar alunos competentes e protagonistas de suas próprias vidas. Localizada no Jardim Cocaia, Guarulhos, nossa escola oferece uma educação integral que vai além do ensino tradicional.<br><br>
+                    Com uma equipe de educadores dedicados e uma estrutura completa, proporcionamos aos nossos alunos um ambiente acolhedor e estimulante para o desenvolvimento de suas habilidades acadêmicas, sociais e emocionais.<br><br>
+                    Nossa missão é formar cidadãos conscientes, críticos e preparados para os desafios do futuro, sempre valorizando o respeito, a responsabilidade e a solidariedade.</p>
+                </div>
+                <div class="sobre-image">
+                    <img id="dynamic-sobre-image" src="" alt="Imagem da Escola" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); display: none;">
+                    <div id="default-sobre-image" style="width: 100%; height: 300px; background: linear-gradient(135deg, var(--vermelho), var(--laranja), var(--amarelo)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+                        Imagem da Escola
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="estrutura" id="estrutura">
+        <div class="container">
+            <h2 class="section-title" id="dynamic-estrutura-title">Nossa Estrutura</h2>
+            <div class="estrutura-grid" id="dynamic-estrutura-grid">
+                <!-- Cards carregados dinamicamente -->
+            </div>
+        </div>
+    </section>
+
+    <section class="sistemas" id="sistemas">
+        <div class="container">
+            <h2 class="section-title" id="dynamic-sistemas-title">Sistemas Educacionais</h2>
+            <div class="sistemas-grid" id="dynamic-sistemas-grid">
+                <!-- Cards carregados dinamicamente -->
+            </div>
+        </div>
+    </section>
+
+    <section class="jornal" id="jornal">
+        <div class="container">
+            <h2 class="section-title">Jornal Escolar</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Fique por dentro das últimas notícias, eventos e atividades da nossa escola. O jornal escolar é produzido pelos alunos e professores para manter toda a comunidade informada.</p>
+            
+            <div class="jornal-grid">
+                <div class="jornal-card">
+                    <div class="jornal-image">
+                        Feira de Ciências 2023
+                    </div>
+                    <div class="jornal-content">
+                        <div class="jornal-date">15 de Novembro, 2023</div>
+                        <h3>Feira de Ciências: Alunos apresentam projetos inovadores</h3>
+                        <p>Nossos alunos surpreenderam com projetos criativos na Feira de Ciências anual.</p>
+                        <a href="jornal.html" class="jornal-link">Ler mais →</a>
+                    </div>
+                </div>
+                
+                <div class="jornal-card">
+                    <div class="jornal-image">
+                        Torneio Esportivo
+                    </div>
+                    <div class="jornal-content">
+                        <div class="jornal-date">5 de Novembro, 2023</div>
+                        <h3>Torneio de Futsal reúne alunos em competição saudável</h3>
+                        <p>Equipes se enfrentaram no torneio interno de futsal.</p>
+                        <a href="jornal.html" class="jornal-link">Ler mais →</a>
+                    </div>
+                </div>
+                
+                <div class="jornal-card">
+                    <div class="jornal-image">
+                        Clube de Leitura
+                    </div>
+                    <div class="jornal-content">
+                        <div class="jornal-date">28 de Outubro, 2023</div>
+                        <h3>Clube de Leitura lança novo projeto</h3>
+                        <p>Alunos trocam indicações de livros e experiências de leitura.</p>
+                        <a href="jornal.html" class="jornal-link">Ler mais →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="jornal-btn-container">
+                <a href="jornal.html" class="btn btn-jornal">Ver Todas as Notícias</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="horarios" id="horarios">
+        <div class="container">
+            <h2 class="section-title">Horários e Rotina</h2>
+            <table class="horario-table">
+                <thead>
+                    <tr>
+                        <th>Período</th>
+                        <th>Horário</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Abertura</td>
+                        <td>07:00</td>
+                        <td>Início das atividades escolares</td>
+                    </tr>
+                    <tr>
+                        <td>Primeiro Intervalo</td>
+                        <td>Varia conforme a tutoria</td>
+                        <td>Intervalo de 15 minutos (pode se estender nos dias de tutoria)</td>
+                    </tr>
+                    <tr>
+                        <td>Intervalo do Almoço</td>
+                        <td>Meio-dia</td>
+                        <td>Intervalo de 50 minutos para refeição</td>
+                    </tr>
+                    <tr>
+                        <td>Último Intervalo</td>
+                        <td>Tarde</td>
+                        <td>Intervalo de 15 minutos</td>
+                    </tr>
+                    <tr>
+                        <td>Encerramento</td>
+                        <td>16:00</td>
+                        <td>Término das atividades escolares</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="contato" id="contato">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <div class="contato-container">
+                <div class="contato-info">
+                    <div class="contato-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Localização</h3>
+                            <p>Rua Lagoa Dourada, 275 - Jardim Cocaia, Guarulhos - SP, 07130-210, Brasil</p>
+                        </div>
+                    </div>
+                    <div class="contato-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Telefone/WhatsApp</h3>
+                            <p>+55 (11) 2279-1810</p>
+                        </div>
+                    </div>
+                    <div class="contato-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Horário de Funcionamento</h3>
+                            <p>Segunda a Sexta: 07:00 - 16:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contato-whatsapp">
+                    <i class="fab fa-whatsapp whatsapp-icon"></i>
+                    <h3>Fale Conosco pelo WhatsApp</h3>
+                    <p>Entre em contato diretamente conosco para tirar dúvidas, agendar visitas ou solicitar informações sobre matrículas.</p>
+                    <a href="https://wa.me/551122791810?text=Olá! Gostaria de mais informações sobre a Escola E.E PEI Jardim Santa Cecília" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Enviar Mensagem
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>E.E PEI Jardim Santa Cecília</h2>
+                    <p>Criando alunos competentes e protagonistas de suas próprias vidas</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#estrutura">Estrutura</a></li>
+                        <li><a href="#sistemas">Sistemas</a></li>
+                        <li><a href="jornal.html">Jornal</a></li>
+                        <li><a href="blogs.html">Blogs dos Clubes</a></li>
+                        <li><a href="#horarios">Horários</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="https://wa.me/551122791810" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 E.E PEI Jardim Santa Cecília. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // SENHA DO SITE PRINCIPAL
+        const SITE_PASSWORD = "R9f!T7@pQ2#Lm8zW";
+
+        // Dados padrão
+        const defaultData = {
+            hero: {
+                title: "Bem-vindo à E.E PEI Jardim Santa Cecília",
+                subtitle: "Criando alunos competentes e protagonistas de suas próprias vidas",
+                image: ""
+            },
+            sobre: {
+                title: "Sobre Nossa Escola",
+                text: "A E.E PEI Jardim Santa Cecília tem como objetivo criar alunos competentes e protagonistas de suas próprias vidas. Localizada no Jardim Cocaia, Guarulhos, nossa escola oferece uma educação integral que vai além do ensino tradicional.\n\nCom uma equipe de educadores dedicados e uma estrutura completa, proporcionamos aos nossos alunos um ambiente acolhedor e estimulante para o desenvolvimento de suas habilidades acadêmicas, sociais e emocionais.\n\nNossa missão é formar cidadãos conscientes, críticos e preparados para os desafios do futuro, sempre valorizando o respeito, a responsabilidade e a solidariedade.",
+                image: ""
+            },
+            estrutura: {
+                title: "Nossa Estrutura",
+                cards: [
+                    { icon: "fas fa-flask", title: "Laboratório", text: "Espaço equipado para aulas práticas e aprofundamento dos conteúdos estudados." },
+                    { icon: "fas fa-palette", title: "Sala de Artes", text: "Ambiente criativo para desenvolvimento de trabalhos artísticos, maquetes e projetos." },
+                    { icon: "fas fa-video", title: "Sala de Vídeo", text: "Espaço para apresentação de trabalhos e utilização dos computadores da escola." },
+                    { icon: "fas fa-book", title: "Sala de Leitura", text: "Ambiente aconchegante para incentivar a leitura e o desenvolvimento intelectual." }
+                ]
+            },
+            sistemas: {
+                title: "Sistemas Educacionais",
+                cards: [
+                    { title: "Sistema de Tutoria", text: "Os professores marcam encontros mensais com os alunos para conversar sobre seu desenvolvimento, sentimentos na escola e possíveis dificuldades." },
+                    { title: "Sistema de Clubes", text: "Os próprios alunos criam e organizam clubes para compartilhar seus interesses e paixões." },
+                    { title: "Atividades Esportivas", text: "Todo início de ano, a escola oferece treinos de Futsal, Vôlei e Basquete." }
+                ]
+            }
+        };
+
+        // Funções do Menu Mobile
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.remove('active');
+        }
+
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mainNav');
+            const menuBtn = document.querySelector('.mobile-menu');
+            
+            if (!nav.contains(event.target) && !menuBtn.contains(event.target) && nav.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
+        // Carregar dados
+        function loadData() {
+            const savedData = localStorage.getItem('siteData');
+            const data = savedData ? JSON.parse(savedData) : defaultData;
+            
+            // Aplicar dados
+            document.getElementById('dynamic-hero-title').textContent = data.hero.title;
+            document.getElementById('dynamic-hero-subtitle').textContent = data.hero.subtitle;
+            document.getElementById('dynamic-sobre-title').textContent = data.sobre.title;
+            document.getElementById('dynamic-sobre-text').innerHTML = data.sobre.text.replace(/\n/g, '<br>');
+            document.getElementById('dynamic-estrutura-title').textContent = data.estrutura.title;
+            document.getElementById('dynamic-sistemas-title').textContent = data.sistemas.title;
+            
+            // Imagem do banner
+            if (data.hero.image) {
+                document.querySelector('.hero').style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${data.hero.image}')`;
+            } else {
+                document.querySelector('.hero').style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23424242"/></svg>')`;
+            }
+            
+            // Imagem da escola
+            if (data.sobre.image) {
+                document.getElementById('dynamic-sobre-image').src = data.sobre.image;
+                document.getElementById('dynamic-sobre-image').style.display = 'block';
+                document.getElementById('default-sobre-image').style.display = 'none';
+            } else {
+                document.getElementById('dynamic-sobre-image').style.display = 'none';
+                document.getElementById('default-sobre-image').style.display = 'flex';
+            }
+            
+            // Carregar cards de estrutura
+            const estruturaGrid = document.getElementById('dynamic-estrutura-grid');
+            estruturaGrid.innerHTML = '';
+            data.estrutura.cards.forEach(card => {
+                estruturaGrid.innerHTML += `
+                    <div class="estrutura-item">
+                        <i class="${card.icon}"></i>
+                        <h3>${card.title}</h3>
+                        <p>${card.text}</p>
+                    </div>
+                `;
+            });
+            
+            // Carregar cards de sistemas
+            const sistemasGrid = document.getElementById('dynamic-sistemas-grid');
+            sistemasGrid.innerHTML = '';
+            data.sistemas.cards.forEach(card => {
+                sistemasGrid.innerHTML += `
+                    <div class="sistema-card">
+                        <h3>${card.title}</h3>
+                        <p>${card.text}</p>
+                    </div>
+                `;
+            });
+            
+            return data;
+        }
+
+        let currentData = loadData();
+
+        // Sistema de Senha
+        function openPasswordModal() {
+            document.getElementById('passwordModal').style.display = 'block';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === SITE_PASSWORD) {
+                closePasswordModal();
+                openAdmin();
+            } else {
+                document.getElementById('passwordError').style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('adminPassword').focus();
+            }
+        }
+
+        // Enter para enviar senha
+        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Funções do Admin
+        function openAdmin() {
+            document.getElementById('adminModal').style.display = 'block';
+            loadAdminData();
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        function openTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function loadAdminData() {
+            document.getElementById('heroTitle').value = currentData.hero.title;
+            document.getElementById('heroSubtitle').value = currentData.hero.subtitle;
+            document.getElementById('heroImage').value = currentData.hero.image;
+            document.getElementById('sobreTitle').value = currentData.sobre.title;
+            document.getElementById('sobreText').value = currentData.sobre.text;
+            document.getElementById('sobreImage').value = currentData.sobre.image;
+            document.getElementById('estruturaTitle').value = currentData.estrutura.title;
+            document.getElementById('sistemasTitle').value = currentData.sistemas.title;
+            
+            // Preview das imagens
+            if (currentData.hero.image) {
+                document.getElementById('heroImagePreview').src = currentData.hero.image;
+                document.getElementById('heroImagePreview').style.display = 'block';
+            }
+            if (currentData.sobre.image) {
+                document.getElementById('sobreImagePreview').src = currentData.sobre.image;
+                document.getElementById('sobreImagePreview').style.display = 'block';
+            }
+            
+            loadEstruturaCards();
+            loadSistemasCards();
+        }
+
+        function loadEstruturaCards() {
+            const container = document.getElementById('estrutura-cards');
+            container.innerHTML = '';
+            currentData.estrutura.cards.forEach((card, index) => {
+                container.innerHTML += `
+                    <div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px;">
+                        <div class="form-group">
+                            <label>Ícone (Font Awesome):</label>
+                            <input type="text" value="${card.icon}" onchange="updateEstruturaCard(${index}, 'icon', this.value)" placeholder="Ex: fas fa-flask">
+                        </div>
+                        <div class="form-group">
+                            <label>Título:</label>
+                            <input type="text" value="${card.title}" onchange="updateEstruturaCard(${index}, 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição:</label>
+                            <textarea onchange="updateEstruturaCard(${index}, 'text', this.value)">${card.text}</textarea>
+                        </div>
+                        <button class="btn" onclick="deleteEstruturaCard(${index})" style="background: #f44336; margin-top: 10px;">
+                            <i class="fas fa-trash"></i> Excluir
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        function loadSistemasCards() {
+            const container = document.getElementById('sistemas-cards');
+            container.innerHTML = '';
+            currentData.sistemas.cards.forEach((card, index) => {
+                container.innerHTML += `
+                    <div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px;">
+                        <div class="form-group">
+                            <label>Título:</label>
+                            <input type="text" value="${card.title}" onchange="updateSistemaCard(${index}, 'title', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Descrição:</label>
+                            <textarea onchange="updateSistemaCard(${index}, 'text', this.value)">${card.text}</textarea>
+                        </div>
+                        <button class="btn" onclick="deleteSistemaCard(${index})" style="background: #f44336; margin-top: 10px;">
+                            <i class="fas fa-trash"></i> Excluir
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        function addEstruturaCard() {
+            currentData.estrutura.cards.push({
+                icon: "fas fa-star",
+                title: "Novo Espaço",
+                text: "Descrição do novo espaço."
+            });
+            loadEstruturaCards();
+        }
+
+        function addSistemaCard() {
+            currentData.sistemas.cards.push({
+                title: "Novo Sistema",
+                text: "Descrição do novo sistema."
+            });
+            loadSistemasCards();
+        }
+
+        function updateEstruturaCard(index, field, value) {
+            currentData.estrutura.cards[index][field] = value;
+        }
+
+        function updateSistemaCard(index, field, value) {
+            currentData.sistemas.cards[index][field] = value;
+        }
+
+        function deleteEstruturaCard(index) {
+            if (confirm('Tem certeza que deseja excluir este card?')) {
+                currentData.estrutura.cards.splice(index, 1);
+                loadEstruturaCards();
+            }
+        }
+
+        function deleteSistemaCard(index) {
+            if (confirm('Tem certeza que deseja excluir este sistema?')) {
+                currentData.sistemas.cards.splice(index, 1);
+                loadSistemasCards();
+            }
+        }
+
+        // Função para converter imagem em Base64
+        function handleImageUpload(input, type) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            // Verificar se o arquivo é uma imagem
+            if (!file.type.match('image.*')) {
+                alert('Por favor, selecione apenas arquivos de imagem.');
+                return;
+            }
+            
+            // Verificar tamanho do arquivo (máximo 2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('A imagem é muito grande. Por favor, selecione uma imagem menor que 2MB.');
+                return;
+            }
+            
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const base64String = e.target.result;
+                
+                if (type === 'hero') {
+                    // É o banner
+                    document.getElementById('heroImage').value = base64String;
+                    document.getElementById('heroImagePreview').src = base64String;
+                    document.getElementById('heroImagePreview').style.display = 'block';
+                } else if (type === 'sobre') {
+                    // É a imagem da escola
+                    document.getElementById('sobreImage').value = base64String;
+                    document.getElementById('sobreImagePreview').src = base64String;
+                    document.getElementById('sobreImagePreview').style.display = 'block';
+                }
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        // Adicionar event listeners para os inputs de arquivo
+        document.getElementById('heroFileInput').addEventListener('change', function() {
+            handleImageUpload(this, 'hero');
+        });
+
+        document.getElementById('sobreFileInput').addEventListener('change', function() {
+            handleImageUpload(this, 'sobre');
+        });
+
+        // Preview das imagens em tempo real
+        document.getElementById('heroImage').addEventListener('input', function() {
+            const preview = document.getElementById('heroImagePreview');
+            if (this.value) {
+                preview.src = this.value;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+
+        document.getElementById('sobreImage').addEventListener('input', function() {
+            const preview = document.getElementById('sobreImagePreview');
+            if (this.value) {
+                preview.src = this.value;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+
+        function saveChanges() {
+            currentData.hero.title = document.getElementById('heroTitle').value;
+            currentData.hero.subtitle = document.getElementById('heroSubtitle').value;
+            currentData.hero.image = document.getElementById('heroImage').value;
+            currentData.sobre.title = document.getElementById('sobreTitle').value;
+            currentData.sobre.text = document.getElementById('sobreText').value;
+            currentData.sobre.image = document.getElementById('sobreImage').value;
+            currentData.estrutura.title = document.getElementById('estruturaTitle').value;
+            currentData.sistemas.title = document.getElementById('sistemasTitle').value;
+            
+            localStorage.setItem('siteData', JSON.stringify(currentData));
+            loadData();
+            closeAdmin();
+            alert('Alterações salvas com sucesso!');
+        }
+
+        function resetToDefault() {
+            if (confirm('Tem certeza que deseja restaurar os valores padrão? Isso apagará todas as suas alterações.')) {
+                localStorage.removeItem('siteData');
+                currentData = JSON.parse(JSON.stringify(defaultData));
+                loadData();
+                loadAdminData();
+            }
+        }
+
+        // Fechar modais ao clicar fora
+        window.onclick = function(event) {
+            const passwordModal = document.getElementById('passwordModal');
+            const adminModal = document.getElementById('adminModal');
+            
+            if (event.target == passwordModal) {
+                closePasswordModal();
+            }
+            if (event.target == adminModal) {
+                closeAdmin();
+            }
+        }
+
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

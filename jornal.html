@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornal Escolar - E.E PEI Jardim Santa Cecília</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --vermelho: #D32F2F;
+            --laranja: #F57C00;
+            --amarelo: #FFC107;
+            --branco: #FFFFFF;
+            --cinza-escuro: #424242;
+        }
+
+        body {
+            color: var(--cinza-escuro);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: var(--branco);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            color: var(--cinza-escuro);
+        }
+
+        .logo span {
+            color: var(--vermelho);
+        }
+
+        .logo .phoenix-icon {
+            margin-right: 10px;
+            color: var(--laranja);
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--cinza-escuro);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--vermelho);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--laranja);
+            color: var(--branco);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--vermelho);
+        }
+
+        .hero-jornal {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23424242"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: var(--branco);
+            text-align: center;
+            padding: 150px 0 80px;
+            margin-top: 70px;
+        }
+
+        .hero-jornal h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-jornal p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .jornal-page {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--vermelho), var(--laranja), var(--amarelo));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .jornal-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: var(--branco);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--vermelho);
+            color: var(--branco);
+            border-color: var(--vermelho);
+        }
+
+        .jornal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .jornal-card {
+            background-color: var(--branco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .jornal-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .jornal-image {
+            height: 200px;
+            background-color: var(--laranja);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            font-size: 1.2rem;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .jornal-content {
+            padding: 20px;
+        }
+
+        .jornal-category {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: var(--vermelho);
+            color: var(--branco);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .jornal-date {
+            color: var(--laranja);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .jornal-card h3 {
+            margin-bottom: 10px;
+            color: var(--cinza-escuro);
+        }
+
+        .jornal-card p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .jornal-link {
+            display: inline-block;
+            color: var(--vermelho);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .jornal-link:hover {
+            color: var(--laranja);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 10px;
+        }
+
+        .page-btn {
+            padding: 8px 15px;
+            background-color: var(--branco);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn.active, .page-btn:hover {
+            background-color: var(--vermelho);
+            color: var(--branco);
+            border-color: var(--vermelho);
+        }
+
+        footer {
+            background-color: var(--cinza-escuro);
+            color: var(--branco);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo h2 {
+            color: var(--branco);
+            margin-bottom: 10px;
+        }
+
+        .footer-links h3 {
+            color: var(--branco);
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--branco);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .admin-panel {
+            position: fixed;
+            top: 85px;
+            right: 20px;
+            z-index: 10000;
+        }
+
+        .admin-btn {
+            background: var(--vermelho);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10001;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .card-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .delete-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .image-preview {
+            max-width: 200px;
+            max-height: 150px;
+            margin: 10px 0;
+            display: none;
+            border-radius: 5px;
+        }
+
+        .base64-help {
+            background: #f0f8ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .base64-help a {
+            color: var(--vermelho);
+            text-decoration: none;
+        }
+
+        .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10002;
+        }
+
+        .password-content {
+            background: white;
+            margin: 20% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .password-error {
+            color: var(--vermelho);
+            margin-top: 10px;
+            display: none;
+        }
+
+        .full-article-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10003;
+        }
+
+        .full-article-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-article {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .image-size-info {
+            background: #f9f9f9;
+            border-left: 4px solid var(--laranja);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .image-size-info h4 {
+            color: var(--laranja);
+            margin-bottom: 10px;
+        }
+
+        .image-size-info ul {
+            margin-left: 20px;
+        }
+
+        .image-size-info li {
+            margin-bottom: 8px;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-btn {
+            display: block;
+            padding: 8px 15px;
+            background: var(--laranja);
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .banner-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin: 10px 0;
+            display: none;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .hero-jornal h1 {
+                font-size: 2rem;
+            }
+            
+            .admin-panel {
+                top: 120px;
+                right: 10px;
+            }
+            
+            .admin-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .admin-panel {
+                top: 130px;
+                right: 5px;
+            }
+            
+            .admin-btn {
+                padding: 6px 10px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="admin-panel">
+        <button class="admin-btn" onclick="openPasswordModal()">
+            <i class="fas fa-cog"></i> Admin Jornal
+        </button>
+    </div>
+
+    <!-- Modal de Senha -->
+    <div id="passwordModal" class="password-modal">
+        <div class="password-content">
+            <h2 style="color: var(--vermelho); margin-bottom: 20px;">
+                <i class="fas fa-lock"></i> Acesso Restrito
+            </h2>
+            <p style="margin-bottom: 20px;">Digite a senha para acessar o painel administrativo do jornal:</p>
+            <div class="form-group">
+                <input type="password" id="adminPassword" placeholder="Digite a senha" style="text-align: center; font-size: 16px;">
+            </div>
+            <div id="passwordError" class="password-error">
+                <i class="fas fa-exclamation-triangle"></i> Senha incorreta!
+            </div>
+            <div class="admin-actions">
+                <button class="btn" onclick="checkPassword()" style="background: var(--laranja);">
+                    <i class="fas fa-unlock"></i> Acessar
+                </button>
+                <button class="btn" onclick="closePasswordModal()" style="background: #666;">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Admin -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <h2>Painel Administrativo - Jornal Escolar</h2>
+            
+            <div class="form-group">
+                <label>Título da Página:</label>
+                <input type="text" id="jornalTitle" value="Jornal Escolar">
+            </div>
+            
+            <div class="form-group">
+                <label>Subtítulo:</label>
+                <textarea id="jornalSubtitle">Fique por dentro de tudo que acontece na nossa escola</textarea>
+            </div>
+            
+            <h3>Banner do Jornal</h3>
+            
+            <div class="form-group">
+                <label>Banner (Base64):</label>
+                <textarea id="jornalBanner" placeholder="Cole o código Base64 do banner aqui" rows="3"></textarea>
+                
+                <div class="file-input-wrapper">
+                    <div class="file-input-btn">
+                        <i class="fas fa-upload"></i> Selecionar Imagem para Converter em Base64
+                    </div>
+                    <input type="file" id="bannerFileInput" accept="image/*">
+                </div>
+                
+                <div class="base64-help">
+                    <strong>Como obter Base64:</strong><br>
+                    1. Use o botão acima para selecionar uma imagem<br>
+                    2. OU vá em <a href="https://www.base64-image.de" target="_blank">base64-image.de</a><br>
+                    3. Faça upload da imagem<br>
+                    4. Copie o código Base64<br>
+                    5. Cole aqui
+                </div>
+                
+                <img id="bannerPreview" class="banner-preview">
+            </div>
+            
+            <div class="image-size-info">
+                <h4><i class="fas fa-info-circle"></i> Tamanhos Ideais para Imagens</h4>
+                <ul>
+                    <li><strong>Banner:</strong> 1200x400 pixels (proporção 3:1)</li>
+                    <li><strong>Imagens de Notícias:</strong> 800x450 pixels (proporção 16:9)</li>
+                    <li><strong>Formatos Recomendados:</strong> JPG (para fotos) ou PNG (para gráficos)</li>
+                    <li><strong>Tamanho Máximo:</strong> 500KB por imagem para melhor desempenho</li>
+                </ul>
+            </div>
+            
+            <h3>Gerenciar Notícias</h3>
+            
+            <div id="noticias-container"></div>
+            
+            <button class="btn" onclick="addNoticia()" style="margin: 20px 0;">
+                <i class="fas fa-plus"></i> Adicionar Notícia
+            </button>
+            
+            <div class="admin-actions">
+                <button class="btn" onclick="saveJornalChanges()">Salvar Alterações</button>
+                <button class="btn" onclick="closeAdmin()" style="background: #666;">Cancelar</button>
+                <button class="btn" onclick="resetJornalToDefault()" style="background: #ff9800;">Restaurar Padrão</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="articleModal" class="full-article-modal">
+        <div class="full-article-content">
+            <span class="close-article" onclick="closeArticle()">&times;</span>
+            <div id="article-content"></div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-fire phoenix-icon"></i>
+                <h1>E.E <span>PEI</span> Jardim Santa Cecília</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="jornal.html" class="btn">Jornal</a></li>
+                    <li><a href="blogs.html">Blogs dos Clubes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-jornal" id="heroJornal">
+        <div class="container">
+            <h1 id="dynamic-jornal-title">Jornal Escolar</h1>
+            <p id="dynamic-jornal-subtitle">Fique por dentro de tudo que acontece na nossa escola</p>
+        </div>
+    </section>
+
+    <section class="jornal-page">
+        <div class="container">
+            <h2 class="section-title">Notícias e Eventos</h2>
+            
+            <div class="jornal-filters">
+                <button class="filter-btn active" onclick="filterNoticias('todos')">Todos</button>
+                <button class="filter-btn" onclick="filterNoticias('eventos')">Eventos</button>
+                <button class="filter-btn" onclick="filterNoticias('esportes')">Esportes</button>
+                <button class="filter-btn" onclick="filterNoticias('projetos')">Projetos</button>
+                <button class="filter-btn" onclick="filterNoticias('clubes')">Clubes</button>
+            </div>
+            
+            <div class="jornal-grid" id="noticias-grid">
+                <!-- Notícias serão carregadas dinamicamente -->
+            </div>
+            
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">→</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>E.E PEI Jardim Santa Cecília</h2>
+                    <p>Criando alunos competentes e protagonistas de suas próprias vidas</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="jornal.html">Jornal</a></li>
+                        <li><a href="blogs.html">Blogs dos Clubes</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 E.E PEI Jardim Santa Cecília. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // SENHA DO JORNAL
+        const JORNAL_PASSWORD = "Z4v@M1q#R8t!Ks9P";
+
+        // Dados padrão do jornal
+        const defaultJornalData = {
+            title: "Jornal Escolar",
+            subtitle: "Fique por dentro de tudo que acontece na nossa escola",
+            banner: "",
+            noticias: [
+                {
+                    id: 1,
+                    titulo: "Feira de Ciências: Alunos apresentam projetos inovadores",
+                    resumo: "Nossos alunos surpreenderam com projetos criativos na Feira de Ciências anual. Confira os destaques!",
+                    categoria: "eventos",
+                    data: "15 de Novembro, 2023",
+                    imagem: "",
+                    artigoCompleto: "Nossos alunos demonstraram grande criatividade e conhecimento científico na Feira de Ciências anual. Projetos inovadores sobre sustentabilidade, robótica e biologia foram apresentados para a comunidade escolar.\n\nOs estudantes do ensino médio desenvolveram um sistema de irrigação automático usando Arduino, enquanto os do ensino fundamental criaram uma maquete de cidade sustentável. A feira contou com a presença de pais, professores e convidados especiais.\n\nParabenizamos todos os alunos e professores envolvidos por este trabalho exemplar!"
+                },
+                {
+                    id: 2,
+                    titulo: "Torneio de Futsal reúne alunos em competição saudável",
+                    resumo: "Equipes se enfrentaram no torneio interno de futsal, promovendo espírito esportivo e trabalho em equipe.",
+                    categoria: "esportes",
+                    data: "5 de Novembro, 2023",
+                    imagem: "",
+                    artigoCompleto: "O torneio interno de futsal da escola foi um sucesso absoluto! Durante duas semanas, equipes formadas por alunos de diferentes séries competiram em um ambiente de fair play e camaradagem.\n\nO time vencedor, 'Os Campeões', mostrou grande habilidade técnica e trabalho em equipe. Porém, o verdadeiro vencedor foi o espírito esportivo demonstrado por todos os participantes.\n\nA competição reforçou valores importantes como respeito, disciplina e cooperação entre os estudantes."
+                },
+                {
+                    id: 3,
+                    titulo: "Clube de Leitura lança novo projeto de intercâmbio literário",
+                    resumo: "Alunos trocam indicações de livros e experiências de leitura em encontros semanais.",
+                    categoria: "clubes",
+                    data: "28 de Outubro, 2023",
+                    imagem: "",
+                    artigoCompleto: "O Clube de Leitura da escola iniciou um emocionante projeto de intercâmbio literário. Os alunos estão trocando indicações de livros e compartilhando suas experiências de leitura em encontros semanais.\n\nCada participante escolhe um livro para recomendar aos colegas, criando uma rede de descobertas literárias. O projeto já resultou em discussões enriquecedoras sobre diversos gêneros e autores.\n\nOs encontros acontecem todas as quintas-feiras na sala de leitura, e novos membros são sempre bem-vindos!"
+                }
+            ]
+        };
+
+        // Sistema de Senha
+        function openPasswordModal() {
+            document.getElementById('passwordModal').style.display = 'block';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === JORNAL_PASSWORD) {
+                closePasswordModal();
+                openAdmin();
+            } else {
+                document.getElementById('passwordError').style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('adminPassword').focus();
+            }
+        }
+
+        // Enter para enviar senha
+        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Carregar dados do jornal
+        function loadJornalData() {
+            const savedData = localStorage.getItem('jornalData');
+            const data = savedData ? JSON.parse(savedData) : defaultJornalData;
+            
+            document.getElementById('dynamic-jornal-title').textContent = data.title;
+            document.getElementById('dynamic-jornal-subtitle').textContent = data.subtitle;
+            
+            // Aplicar banner se existir
+            if (data.banner) {
+                document.getElementById('heroJornal').style.backgroundImage = 
+                    `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${data.banner}')`;
+            }
+            
+            renderNoticias(data.noticias);
+            return data;
+        }
+
+        let currentJornalData = loadJornalData();
+
+        // Renderizar notícias
+        function renderNoticias(noticias) {
+            const grid = document.getElementById('noticias-grid');
+            grid.innerHTML = '';
+            
+            noticias.forEach(noticia => {
+                const backgroundStyle = noticia.imagem ? 
+                    `background-image: url('${noticia.imagem}')` : 
+                    'background-color: var(--laranja)';
+                
+                grid.innerHTML += `
+                    <div class="jornal-card" data-categoria="${noticia.categoria}">
+                        <div class="jornal-image" style="${backgroundStyle}">
+                            ${noticia.imagem ? '' : noticia.titulo.substring(0, 30) + '...'}
+                        </div>
+                        <div class="jornal-content">
+                            <span class="jornal-category">${noticia.categoria}</span>
+                            <div class="jornal-date">${noticia.data}</div>
+                            <h3>${noticia.titulo}</h3>
+                            <p>${noticia.resumo}</p>
+                            <a href="#" class="jornal-link" onclick="openArticle(${noticia.id})">Ler mais →</a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Filtrar notícias
+        function filterNoticias(categoria) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            const noticias = document.querySelectorAll('.jornal-card');
+            noticias.forEach(noticia => {
+                if (categoria === 'todos' || noticia.dataset.categoria === categoria) {
+                    noticia.style.display = 'block';
+                } else {
+                    noticia.style.display = 'none';
+                }
+            });
+        }
+
+        // Abrir artigo completo
+        function openArticle(id) {
+            event.preventDefault();
+            const noticia = currentJornalData.noticias.find(n => n.id === id);
+            if (noticia) {
+                document.getElementById('article-content').innerHTML = `
+                    <h2>${noticia.titulo}</h2>
+                    <div class="jornal-date">${noticia.data}</div>
+                    <div class="jornal-category">${noticia.categoria}</div>
+                    <div style="margin: 20px 0;">
+                        ${noticia.imagem ? `<img src="${noticia.imagem}" style="max-width: 100%; border-radius: 8px; margin-bottom: 20px;">` : ''}
+                    </div>
+                    <div style="line-height: 1.8; font-size: 1.1rem;">
+                        ${noticia.artigoCompleto.replace(/\n/g, '<br><br>')}
+                    </div>
+                `;
+                document.getElementById('articleModal').style.display = 'block';
+            }
+        }
+
+        function closeArticle() {
+            document.getElementById('articleModal').style.display = 'none';
+        }
+
+        // Funções do Admin do Jornal
+        function openAdmin() {
+            document.getElementById('adminModal').style.display = 'block';
+            loadAdminJornalData();
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        function loadAdminJornalData() {
+            document.getElementById('jornalTitle').value = currentJornalData.title;
+            document.getElementById('jornalSubtitle').value = currentJornalData.subtitle;
+            document.getElementById('jornalBanner').value = currentJornalData.banner || '';
+            
+            // Mostrar preview do banner se existir
+            if (currentJornalData.banner) {
+                document.getElementById('bannerPreview').src = currentJornalData.banner;
+                document.getElementById('bannerPreview').style.display = 'block';
+            }
+            
+            loadNoticiasAdmin();
+        }
+
+        function loadNoticiasAdmin() {
+            const container = document.getElementById('noticias-container');
+            container.innerHTML = '';
+            
+            currentJornalData.noticias.forEach((noticia, index) => {
+                container.innerHTML += `
+                    <div class="card-item">
+                        <h3 style="color: var(--vermelho); margin-bottom: 15px;">Notícia ${index + 1}</h3>
+                        <div class="form-group">
+                            <label>Título:</label>
+                            <input type="text" value="${noticia.titulo}" onchange="updateNoticia(${index}, 'titulo', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Resumo:</label>
+                            <textarea onchange="updateNoticia(${index}, 'resumo', this.value)">${noticia.resumo}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Categoria:</label>
+                            <select onchange="updateNoticia(${index}, 'categoria', this.value)">
+                                <option value="eventos" ${noticia.categoria === 'eventos' ? 'selected' : ''}>Eventos</option>
+                                <option value="esportes" ${noticia.categoria === 'esportes' ? 'selected' : ''}>Esportes</option>
+                                <option value="projetos" ${noticia.categoria === 'projetos' ? 'selected' : ''}>Projetos</option>
+                                <option value="clubes" ${noticia.categoria === 'clubes' ? 'selected' : ''}>Clubes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Data:</label>
+                            <input type="text" value="${noticia.data}" onchange="updateNoticia(${index}, 'data', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>Imagem (Base64):</label>
+                            <textarea onchange="updateNoticia(${index}, 'imagem', this.value)" placeholder="Cole o código Base64 da imagem aqui" rows="3">${noticia.imagem}</textarea>
+                            <div class="file-input-wrapper">
+                                <div class="file-input-btn">
+                                    <i class="fas fa-upload"></i> Selecionar Imagem para Converter em Base64
+                                </div>
+                                <input type="file" class="noticiaFileInput" data-index="${index}" accept="image/*">
+                            </div>
+                            <div class="base64-help">
+                                <strong>Como obter Base64:</strong><br>
+                                1. Use o botão acima para selecionar uma imagem<br>
+                                2. OU vá em <a href="https://www.base64-image.de" target="_blank">base64-image.de</a><br>
+                                3. Faça upload da imagem<br>
+                                4. Copie o código Base64<br>
+                                5. Cole aqui
+                            </div>
+                            ${noticia.imagem ? `<img src="${noticia.imagem}" class="image-preview" style="display: block;">` : '<img class="image-preview">'}
+                        </div>
+                        <div class="form-group">
+                            <label>Artigo Completo:</label>
+                            <textarea rows="6" onchange="updateNoticia(${index}, 'artigoCompleto', this.value)">${noticia.artigoCompleto}</textarea>
+                        </div>
+                        <button class="delete-btn" onclick="deleteNoticia(${index})">
+                            <i class="fas fa-trash"></i> Excluir Notícia
+                        </button>
+                    </div>
+                `;
+            });
+            
+            // Adicionar event listeners para os inputs de arquivo das notícias
+            document.querySelectorAll('.noticiaFileInput').forEach(input => {
+                input.addEventListener('change', function() {
+                    const index = this.getAttribute('data-index');
+                    handleImageUpload(this, index);
+                });
+            });
+        }
+
+        function addNoticia() {
+            const newId = Math.max(...currentJornalData.noticias.map(n => n.id)) + 1;
+            currentJornalData.noticias.push({
+                id: newId,
+                titulo: "Nova Notícia",
+                resumo: "Resumo da nova notícia...",
+                categoria: "eventos",
+                data: new Date().toLocaleDateString('pt-BR'),
+                imagem: "",
+                artigoCompleto: "Artigo completo da nova notícia..."
+            });
+            loadNoticiasAdmin();
+        }
+
+        function updateNoticia(index, field, value) {
+            currentJornalData.noticias[index][field] = value;
+            
+            // Atualizar preview da imagem
+            if (field === 'imagem' && value) {
+                const card = document.querySelectorAll('.card-item')[index];
+                const imgPreview = card.querySelector('.image-preview');
+                imgPreview.src = value;
+                imgPreview.style.display = 'block';
+            }
+        }
+
+        function deleteNoticia(index) {
+            if (confirm('Tem certeza que deseja excluir esta notícia?')) {
+                currentJornalData.noticias.splice(index, 1);
+                loadNoticiasAdmin();
+            }
+        }
+
+        function saveJornalChanges() {
+            currentJornalData.title = document.getElementById('jornalTitle').value;
+            currentJornalData.subtitle = document.getElementById('jornalSubtitle').value;
+            currentJornalData.banner = document.getElementById('jornalBanner').value;
+            
+            localStorage.setItem('jornalData', JSON.stringify(currentJornalData));
+            loadJornalData();
+            closeAdmin();
+            alert('Alterações salvas com sucesso!');
+        }
+
+        function resetJornalToDefault() {
+            if (confirm('Tem certeza que deseja restaurar os valores padrão? Isso apagará todas as suas alterações.')) {
+                localStorage.removeItem('jornalData');
+                currentJornalData = JSON.parse(JSON.stringify(defaultJornalData));
+                loadJornalData();
+                loadAdminJornalData();
+            }
+        }
+
+        // Função para converter imagem em Base64
+        function handleImageUpload(input, index = null) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            // Verificar se o arquivo é uma imagem
+            if (!file.type.match('image.*')) {
+                alert('Por favor, selecione apenas arquivos de imagem.');
+                return;
+            }
+            
+            // Verificar tamanho do arquivo (máximo 2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('A imagem é muito grande. Por favor, selecione uma imagem menor que 2MB.');
+                return;
+            }
+            
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const base64String = e.target.result;
+                
+                if (index !== null) {
+                    // É uma imagem de notícia
+                    updateNoticia(index, 'imagem', base64String);
+                    const card = document.querySelectorAll('.card-item')[index];
+                    const textarea = card.querySelector('textarea');
+                    textarea.value = base64String;
+                } else {
+                    // É o banner
+                    document.getElementById('jornalBanner').value = base64String;
+                    document.getElementById('bannerPreview').src = base64String;
+                    document.getElementById('bannerPreview').style.display = 'block';
+                }
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        // Adicionar event listener para o input de arquivo do banner
+        document.getElementById('bannerFileInput').addEventListener('change', function() {
+            handleImageUpload(this);
+        });
+
+        // Fechar modais ao clicar fora
+        window.onclick = function(event) {
+            const passwordModal = document.getElementById('passwordModal');
+            const adminModal = document.getElementById('adminModal');
+            const articleModal = document.getElementById('articleModal');
+            
+            if (event.target == passwordModal) {
+                closePasswordModal();
+            }
+            if (event.target == adminModal) {
+                closeAdmin();
+            }
+            if (event.target == articleModal) {
+                closeArticle();
+            }
+        }
+
+        // Paginação
+        document.querySelectorAll('.page-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.page-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Filtros
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
